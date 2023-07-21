@@ -180,11 +180,10 @@ public class Lab1P2_WalterDoblado {
         } else {
 
             sc = (int) Math.pow(-4, cont);
-            
-            int expo3=0;
-            expo3 = (int)Math.pow(x, 2);
-            sc = 2 * cont * sc*(1-expo3);
-            
+
+            int expo3 = 0;
+            expo3 = (int) Math.pow(x, 2);
+            sc = 2 * cont * sc * (1 - expo3);
 
             double fac = 2 * cont;
 
