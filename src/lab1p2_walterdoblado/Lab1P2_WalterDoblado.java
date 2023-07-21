@@ -12,12 +12,25 @@ public class Lab1P2_WalterDoblado {
             menu();
             opc = lea.nextInt();
             if (opc == 1) {
-                double a, b, c, des;
+                double a = 0, b = 0, c = 0, des = 0;
+                int cont = 0;
+                int expo = 0;
                 System.out.println("ingrese a");
-
+                a = lea.nextInt();
                 System.out.println("ingrese b");
+                b = lea.nextInt();
                 System.out.println("ingrese c");
-                System.out.println("ingrese des");
+                c = lea.nextInt();
+                ////es el 100 pero lo puede variar
+                System.out.println("ingrese desplasamiento");
+                des = lea.nextInt();
+
+                double vert = -b / 2 * a;
+
+                vert = vert - 200;
+                double del = metod(a, b, c, des, vert, cont, expo);
+
+                System.out.println(del);
 
             } else if (opc == 2) {
                 int x = 0;
@@ -27,16 +40,23 @@ public class Lab1P2_WalterDoblado {
                 double sc;
                 double alt = 0;
                 double cont = 0;
+                int x2 = x;
                 System.out.println("ingrese x");
                 x = lea.nextInt();
                 System.out.println("ingrese el desplasamiento");
                 des = lea.nextInt();
+                if (x > 90) {
+                    System.out.println("ingrese un numero de x menor a noventa");
+                    x2 = lea.nextInt();
+
+                }
                 double scd = taysin(x, des, acum, alt, cont);
-                System.out.println("el seno es: "+scd);
-                double del =taycos( x,  des,  acum,  alt,  cont);
-                System.out.println("el coseno es: "+del);
-                double tan =taycos( x, des, acum, alt, cont);
-                System.out.println("tangente es: "+tan);
+                System.out.println("el seno es: " + scd);
+                double del = taycos(x, des, acum, alt, cont);
+                System.out.println("el coseno es: " + del);
+
+                double tan = taycos(x2, des, acum, alt, cont);
+                System.out.println("tangente es: " + tan);
             } else if (opc == 3) {
                 System.out.println("salio del codigo");
 
@@ -57,9 +77,20 @@ public class Lab1P2_WalterDoblado {
 
     }
 
-//    public static int metod(double a, double b, double c, double des) {
-//
-//    }
+    public static double metod(double a, double b, double c, double des, double vert, int cont, int expo) {
+
+        if (cont == des) {
+            return vert;
+        } else {
+
+            expo = (int) Math.pow(vert, 2);
+            vert = vert - 2 * expo + vert + 3;
+            vert = vert / 4 * vert + 1;
+            return metod(a, b, c, des, vert, cont + 1, expo);
+
+        }
+    }
+
     public static int taysin(int x, int des, double acum, double alt, double cont) {
 //        int cont = 0;
 //        int acum = 0;
@@ -67,28 +98,26 @@ public class Lab1P2_WalterDoblado {
         double sc;
 //        int alt = 0;
 
-        if (des == 0) {
+        if (cont == des) {
 
             return (int) alt;
 
         } else {
             sc = (int) Math.pow(-1, cont);
-            System.out.println("numerador exponente" +sc);
-            double fac = 2 * cont + 1;
-            System.out.println("denominador" +fac);
-            double fa = factorial(fac);
-            System.out.println("factorial"+fa);
-            sc = sc / fa;
-            System.out.println("divicion"+sc);
-            expo = 2 * cont + 1;
-            System.out.println("expo de x"+expo);
 
-            double expo2 =  Math.pow(x, expo);
-            System.out.println("resultado de expo de x"+expo2);
+            double fac = 2 * cont + 1;
+
+            double fa = factorial(fac);
+
+            sc = sc / fa;
+
+            expo = 2 * cont + 1;
+
+            double expo2 = Math.pow(x, expo);
+
             alt += sc * expo2;
-            System.out.println("final"+alt);
-            
-            return taysin(x, des - 1, acum, alt, cont);
+
+            return taysin(x, des, acum, alt, cont + 1);
 
         }
 
@@ -103,75 +132,76 @@ public class Lab1P2_WalterDoblado {
         }
 
     }
-        public static int taycos(int x, int des, double acum, double alt, double cont) {
+
+    public static int taycos(int x, int des, double acum, double alt, double cont) {
 //        int cont = 0;
 //        int acum = 0;
         double expo = 0;
         double sc;
 //        int alt = 0;
 
-        if (des == 0) {
+        if (cont == des) {
 
             return (int) alt;
 
         } else {
             sc = (int) Math.pow(-1, cont);
-            System.out.println("numerador exponente" +sc);
+
             double fac = 2 * cont;
-            System.out.println(""+fac);
-            double fa = factorial(fac);
-            System.out.println(fa);
-            sc = sc / fa;
-            System.out.println(sc);
-            expo = 2 * cont;
-            System.out.println(expo);
 
-            double expo2 =  Math.pow(x, expo);
+            double fa = factorial(fac);
+
+            sc = sc / fa;
+
+            expo = 2 * cont;
+
+            double expo2 = Math.pow(x, expo);
 
             alt += sc * expo2;
-            System.out.println(alt);
-            
-            return taysin(x, des - 1, acum, alt, cont);
+
+            return taysin(x, des, acum, alt, cont + 1);
 
         }
 
     }
-            public static double taytan(int x, int des, double acum, double alt, double cont) {
+
+    public static double taytan(int x, int des, double acum, double alt, double cont) {
+        Scanner lea = new Scanner(System.in);
 //        int cont = 0;
 //        int acum = 0;
         double expo = 0;
         double sc;
 //        int alt = 0;
 
-        if (des == 0) {
+        if (cont == des) {
 
             return (int) alt;
 
         } else {
-            if(x){
-                
-            }
-            sc = (int) Math.pow(-1, cont);
-            System.out.println(sc);
-            double fac = 2 * cont + 1;
-            System.out.println(fac);
-            double fa = factorial(fac);
-            System.out.println(fa);
-            sc = sc / fa;
-            System.out.println(sc);
-            expo = 2 * cont + 1;
-            System.out.println(expo);
 
-            double expo2 =  Math.pow(x, expo);
+            sc = (int) Math.pow(-4, cont);
+            
+            int expo3=0;
+            expo3 = (int)Math.pow(x, 2);
+            sc = 2 * cont * sc*(1-expo3);
+            
+
+            double fac = 2 * cont;
+
+            double fa = factorial(fac);
+
+            sc = sc / fa;
+
+            expo = 2 * cont - 1;
+
+            double expo2 = Math.pow(x, expo);
 
             alt += sc * expo2;
-            System.out.println(alt);
-            
-            return taysin(x, des , acum, alt, cont);
+
+            return taysin(x, des, acum, alt, cont + 1);
 
         }
 
     }
-
 
 }
