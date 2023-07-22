@@ -26,11 +26,15 @@ public class Lab1P2_WalterDoblado {
                 des = lea.nextInt();
 
                 double vert = -b / 2 * a;
-
+                 double vert2;
                 vert = vert - 200;
+                vert2 = vert +200;
                 double del = metod(a, b, c, des, vert, cont, expo);
+                double del2 = metod2( a,  b,  c,  des, vert2,  cont,  expo);
+                
 
                 System.out.println(del);
+                System.out.println(del2);
 
             } else if (opc == 2) {
                 int x = 0;
@@ -91,6 +95,22 @@ public class Lab1P2_WalterDoblado {
         }
     }
 
+    public static double metod2(double a, double b, double c, double des, double vert, int cont, int expo) {
+
+        if (cont == des) {
+            return vert;
+        } else {
+
+            expo = (int) Math.pow(vert, 2);
+            vert = vert - 2 * expo + vert + 3;
+            vert = vert / 4 * vert + 1;
+            return metod(a, b, c, des, vert, cont + 1, expo);
+
+        }
+    }
+
+    
+    
     public static int taysin(int x, int des, double acum, double alt, double cont) {
 //        int cont = 0;
 //        int acum = 0;
